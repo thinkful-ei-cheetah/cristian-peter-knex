@@ -51,8 +51,11 @@ describe('shopping list service object', function() {
         })
 
         it(`getAllItems() returns all items from 'shopping_list' table`, () => {
-            
-            return
+            const expected = testItems.map(item => ({...item}))
+            return ShoppingListService.getAllItems(db)
+                .then(actual => {
+                    expect(actual).to.eql(expected);
+                })
         } )
 
         it(`deleteItem() removes item by id from 'shopping_list' table`, () => {
